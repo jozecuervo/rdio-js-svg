@@ -154,6 +154,7 @@ width:100px;
 
 /* SPLASH */
 #splash {
+  background:radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
 display:block;
 position: absolute;
 top: 0;

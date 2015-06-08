@@ -3,39 +3,6 @@ var Zepto=function(){function t(t){return null==t?String(t):W[X.call(t)]||"objec
 
 !function(n){function e(n){return n._zid||(n._zid=p++)}function t(n,t,o,u){if(t=r(t),t.ns)var a=i(t.ns);return(g[e(n)]||[]).filter(function(n){return!(!n||t.e&&n.e!=t.e||t.ns&&!a.test(n.ns)||o&&e(n.fn)!==e(o)||u&&n.sel!=u)})}function r(n){var e=(""+n).split(".");return{e:e[0],ns:e.slice(1).sort().join(" ")}}function i(n){return new RegExp("(?:^| )"+n.replace(" "," .* ?")+"(?: |$)")}function o(n,e){return n.del&&!y&&n.e in E||!!e}function u(n){return P[n]||y&&E[n]||n}function a(t,i,a,s,f,p,d){var v=e(t),h=g[v]||(g[v]=[]);i.split(/\s/).forEach(function(e){if("ready"==e)return n(document).ready(a);var i=r(e);i.fn=a,i.sel=f,i.e in P&&(a=function(e){var t=e.relatedTarget;return!t||t!==this&&!n.contains(this,t)?i.fn.apply(this,arguments):void 0}),i.del=p;var v=p||a;i.proxy=function(n){if(n=c(n),!n.isImmediatePropagationStopped()){n.data=s;var e=v.apply(t,n._args==l?[n]:[n].concat(n._args));return e===!1&&(n.preventDefault(),n.stopPropagation()),e}},i.i=h.length,h.push(i),"addEventListener"in t&&t.addEventListener(u(i.e),i.proxy,o(i,d))})}function s(n,r,i,a,s){var c=e(n);(r||"").split(/\s/).forEach(function(e){t(n,e,i,a).forEach(function(e){delete g[c][e.i],"removeEventListener"in n&&n.removeEventListener(u(e.e),e.proxy,o(e,s))})})}function c(e,t){return(t||!e.isDefaultPrevented)&&(t||(t=e),n.each(D,function(n,r){var i=t[n];e[n]=function(){return this[r]=b,i&&i.apply(t,arguments)},e[r]=x}),(t.defaultPrevented!==l?t.defaultPrevented:"returnValue"in t?t.returnValue===!1:t.getPreventDefault&&t.getPreventDefault())&&(e.isDefaultPrevented=b)),e}function f(n){var e,t={originalEvent:n};for(e in n)w.test(e)||n[e]===l||(t[e]=n[e]);return c(t,n)}var l,p=1,d=Array.prototype.slice,v=n.isFunction,h=function(n){return"string"==typeof n},g={},m={},y="onfocusin"in window,E={focus:"focusin",blur:"focusout"},P={mouseenter:"mouseover",mouseleave:"mouseout"};m.click=m.mousedown=m.mouseup=m.mousemove="MouseEvents",n.event={add:a,remove:s},n.proxy=function(t,r){var i=2 in arguments&&d.call(arguments,2);if(v(t)){var o=function(){return t.apply(r,i?i.concat(d.call(arguments)):arguments)};return o._zid=e(t),o}if(h(r))return i?(i.unshift(t[r],t),n.proxy.apply(null,i)):n.proxy(t[r],t);throw new TypeError("expected function")},n.fn.bind=function(n,e,t){return this.on(n,e,t)},n.fn.unbind=function(n,e){return this.off(n,e)},n.fn.one=function(n,e,t,r){return this.on(n,e,t,r,1)};var b=function(){return!0},x=function(){return!1},w=/^([A-Z]|returnValue$|layer[XY]$)/,D={preventDefault:"isDefaultPrevented",stopImmediatePropagation:"isImmediatePropagationStopped",stopPropagation:"isPropagationStopped"};n.fn.delegate=function(n,e,t){return this.on(e,n,t)},n.fn.undelegate=function(n,e,t){return this.off(e,n,t)},n.fn.live=function(e,t){return n(document.body).delegate(this.selector,e,t),this},n.fn.die=function(e,t){return n(document.body).undelegate(this.selector,e,t),this},n.fn.on=function(e,t,r,i,o){var u,c,p=this;return e&&!h(e)?(n.each(e,function(n,e){p.on(n,t,r,e,o)}),p):(h(t)||v(i)||i===!1||(i=r,r=t,t=l),(i===l||r===!1)&&(i=r,r=l),i===!1&&(i=x),p.each(function(l,p){o&&(u=function(n){return s(p,n.type,i),i.apply(this,arguments)}),t&&(c=function(e){var r,o=n(e.target).closest(t,p).get(0);return o&&o!==p?(r=n.extend(f(e),{currentTarget:o,liveFired:p}),(u||i).apply(o,[r].concat(d.call(arguments,1)))):void 0}),a(p,e,i,r,t,c||u)}))},n.fn.off=function(e,t,r){var i=this;return e&&!h(e)?(n.each(e,function(n,e){i.off(n,t,e)}),i):(h(t)||v(r)||r===!1||(r=t,t=l),r===!1&&(r=x),i.each(function(){s(this,e,r,t)}))},n.fn.trigger=function(e,t){return e=h(e)||n.isPlainObject(e)?n.Event(e):c(e),e._args=t,this.each(function(){e.type in E&&"function"==typeof this[e.type]?this[e.type]():"dispatchEvent"in this?this.dispatchEvent(e):n(this).triggerHandler(e,t)})},n.fn.triggerHandler=function(e,r){var i,o;return this.each(function(u,a){i=f(h(e)?n.Event(e):e),i._args=r,i.target=a,n.each(t(a,e.type||e),function(n,e){return o=e.proxy(i),i.isImmediatePropagationStopped()?!1:void 0})}),o},"focusin focusout focus blur load resize scroll unload click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select keydown keypress keyup error".split(" ").forEach(function(e){n.fn[e]=function(n){return 0 in arguments?this.bind(e,n):this.trigger(e)}}),n.Event=function(n,e){h(n)||(e=n,n=e.type);var t=document.createEvent(m[n]||"Events"),r=!0;if(e)for(var i in e)"bubbles"==i?r=!!e[i]:t[i]=e[i];return t.initEvent(n,r,!0),c(t)}}(Zepto);
 
-
-var colors = [
-"#00ABED",
-"#00E8FF",
-"#8040B0",
-"#B580FF",
-"#D6338F",
-"#FFCC4A", 
-"#FCFA59", 
-"#FF7845", 
-"#FF4761", 
-"#00ED73", 
-"#78FF87", 
-"#33F5C7",
-"#EDEDED",
-"#858A91",
-"#3B4D54",
-"#21262E"];
-
-var index = 0;
-var animate = function(){
-    var color = colors[index%colors.length]
-    index++
-    console.log(color)
-    $('.logo_path').css('stroke',color);
-}
-animate();
-window.loaderAnimation = setInterval(animate, 500);
-clearInterval(window.loaderAnimation);
-
-
-
-
 var loaded = false;
 function onChangeIsMaster (r) {
     console.log('onChangeIsMaster',r);
@@ -56,7 +23,6 @@ function onChangePlayingTrack(){
   updateTrackDetails();
 }
 function onChangePlayState(s) {
-  
   console.log('onRdioPlayStateChanged',s)
   $('.play_icon').hide();
   $('.pause_icon').hide();
@@ -132,7 +98,6 @@ function updateTrackDetails(){
     $('progress').attr('max',track.duration);
   });
 }
-
 function onPlayerControlClicked(evt) {
   evt.preventDefault();
   // if (this.trackLoading) {return;}
@@ -167,25 +132,8 @@ function onPlayerControlClicked(evt) {
         R.player.shuffle(0);
       }
       break;
-    case 'thdown':
-      //prevent thumbs downing a track that was just thumbs upped
-      if (!$('#controls').hasClass('thumbs_upd')) {
-        R.player.voteDown(R.player.playingTrack());
-      }
-      break;
-    case 'thup':
-      //prevent thumbs upping a track that was just thumbs upped
-      if (!$('#controls').hasClass('thumbs_upd')) {
-        R.player.voteUp(R.player.playingTrack());
-        this.updateThumbs(true);
-      }
-      break;
-    default:
-      console.error('[Chromecast][Player] unrecognized player control clicked');
-      break;
   }
 }
-
 function rdioGetTrack(key, callback) {
   R.request({
     method: 'get',
@@ -211,7 +159,8 @@ function musicLoaded(){
     loaded = true;
     $('body').removeClass('loading');
     window.clearInterval(window.loaderAnimation);
-    onChangePlayingTrack();
+    $('.logo_path').css('stroke','none').css('fill','#fff');
+    updateTrackDetails();
     $('.time').text('1'.toHHMMSS());
   }
 }
@@ -227,13 +176,9 @@ function init(){
 }
 
 String.prototype.toHHMMSS = function () {
-    var sec_num = parseInt(this, 10); // don't forget the second param
-    var hours   = Math.floor(sec_num / 3600);
-    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-    var seconds = sec_num - (hours * 3600) - (minutes * 60);
-
-    // if (hours   < 10) {hours   = "0"+hours;}
-    // if (minutes < 10) {minutes = "0"+minutes;}
+    var sec_num = parseInt(this, 10);
+    var minutes = Math.floor(sec_num  / 60);
+    var seconds = sec_num - (minutes * 60);
     if (seconds < 10) {seconds = "0"+seconds;}
     var time    = minutes+':'+seconds;
     return time;

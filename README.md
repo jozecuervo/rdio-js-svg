@@ -2,10 +2,9 @@
 
 A tiny Rdio javascript SDK client implemented with SVG graphics. Built for "performance" Hackday June 2015, this client aims at providing all UI and functionality needed for a basic HTML music player with the tiniest possible footprint.
 
- - HTML+SVG Graphics: 7KB
- - CSS: 3KB
- - JS (including Zepto): 25KB
- - Also requires all of Rdio JS SDK to load.
+ - HTML+SVG Graphics: < 7KB
+ - CSS: < 3KB
+ - JS (including Zepto): < 24KB
 
 TODO:
  - Finish implementing shuffle and repeat
