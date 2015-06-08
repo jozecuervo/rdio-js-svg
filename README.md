@@ -8,12 +8,14 @@ A tiny Rdio javascript SDK client implemented with SVG graphics. Built for "perf
 
 TODO:
  - Finish implementing shuffle and repeat
- - Look for a way to implement thumbs up / down
- - Clean up booting logo animation
  - Media queries to scale icon sizes.
+  Implement thumbs up / down as a new permission in the JS SDK.
 
 IDEAS
  - delete zepto and use raw JS
- - Merge into rdio-hue.
- - Andy Warhol style loading screen with tiled non-inline logo.svg
- - Start on Chromecast receiver
+ - Merge back into rdio-hue.
+ - Use as a base for a new Chromecast receiver
+
+RESOURCES
+ - Rdio JS Examples: https://github.com/rdio/jsapi-examples/
+ - Rdio JS API Documentation: http://www.rdio.com/developers/docs/jsapi/index/ (password protected)
