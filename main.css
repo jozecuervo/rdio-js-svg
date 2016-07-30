@@ -198,3 +198,21 @@ padding: 20px;
 font-size: 48px;
 border: 4px solid white;
 }
+
+@media (max-width: 480px) {
+  #controls{
+  height:30px;
+  line-height:30px;
+  }
+ #controls a {
+   width: 20px;
+   height: 20px;
+ }
+ #controls a#playpause{
+   width:30px;
+   height:30px;
+ }
+ #progbar{
+   width:90%;
+ }
+}
